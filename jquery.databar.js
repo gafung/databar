@@ -77,7 +77,9 @@
 
       (function ($tds, options) {
         var metrics = {};
-        metrics['100%'] = Math.max.apply(null, numbers);
+        metrics['fullRangeMin'] = Math.min(0, Math.min.apply(null, numbers));
+        metrics['fullRange'] = Math.max.apply(null, numbers) - metrics['fullRangeMin'];
+        metrics['zero'] = (0 - metrics['fullRangeMin']) / metrics['fullRange'];
         var color = colorMaker.color();
 
         $tds.each(function (i) {
@@ -90,17 +92,31 @@
             return true;
           }
 
+
+          var barLeft;
+          var barWidthNum = Math.abs(numbers[i]) / metrics['fullRange'];
+          var barWidth = (100 * barWidthNum) + '%';
+          var barColor;
+
+          if(numbers[i] >= 0){
+              barColor = color;
+              barLeft = (100 * metrics['zero']) + '%';
+          } else {
+              barLeft = (100 * (metrics['zero'] - barWidthNum)) + '%';
+              barColor = 'rgba(255, 0, 0, 0.4)';
+          }
+
           var $bar = $('<span />')
             .css($.extend({
               'position': 'absolute',
               'top': 0,
-              'left': 0,
+              'left': barLeft,
               'right': 0,
               'zIndex': 0,
               'display': 'block',
               'height': '100%',
-              'width': (100 * numbers[i] / metrics['100%']) + '%',
-              'backgroundColor': color
+              'width': barWidth,
+              'backgroundColor': barColor
             }, options.css));
           $td.prepend($bar);
 
