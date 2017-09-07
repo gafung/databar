@@ -9,7 +9,7 @@ jquery.databar - jQuery plugin for Excel-style data bar.
 1. double click examples/demo.html
 
 ![Demo](/examples/demo.png)
-![Demo](/examples/demo2.png)
+![Demo2](/examples/demo2.png)
 
 
 ## Installation
