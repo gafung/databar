@@ -9,7 +9,6 @@ jquery.databar - jQuery plugin for Excel-style data bar.
 1. double click examples/demo.html
 
 ![Demo](/examples/demo.png)
-![Demo2](/examples/demo2.png)
 
 
 ## Installation
@@ -40,7 +39,8 @@ where the jQuery selector is used to obtain a reference to the table you want to
 
 ```js
 $('table').databar( {
-  backgroundOpacity: 0.1
+  backgroundOpacity: 0.1,
+  'column_groups': [[2, 3]],
 } );
 ```
 
