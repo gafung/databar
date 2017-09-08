@@ -40,7 +40,8 @@ where the jQuery selector is used to obtain a reference to the table you want to
 ```js
 $('table').databar( {
   backgroundOpacity: 0.1,
-  'column_groups': [[2, 3]],
+  'column_groups': [[3, 4]],
+  'ignore_columns': [1],
 } );
 ```
 

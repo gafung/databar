@@ -12,7 +12,10 @@
   <script src="../jquery.databar.js"></script>
   <script>
     $(function () {
-      $('table').databar({column_groups:[[2, 3]]});
+      $('table').databar({
+          column_groups:[[3, 4]],
+          ignore_columns: [1]
+      });
     });
   </script>
 </head>
@@ -21,6 +24,7 @@
   <thead>
   <tr>
     <th>Apple</th>
+    <th>Orange</th>
     <th>Profit</th>
     <th>Profit 2017 (Grouped)</th>
     <th>Profit 2018 (Grouped)</th>
@@ -29,11 +33,13 @@
   <tbody>
   <tr>
     <td>1</td>
+    <td>1</td>
     <td>-100</td>
     <td>-10</td>
     <td>0</td>
   </tr>
   <tr>
+    <td>2</td>
     <td>2</td>
     <td>0</td>
     <td>-5</td>
@@ -41,17 +47,20 @@
   </tr>
   <tr>
     <td>3</td>
+    <td>3</td>
     <td>100</td>
     <td>0</td>
     <td>100</td>
   </tr>
   <tr>
     <td>4</td>
+    <td>4</td>
     <td>200</td>
     <td>5</td>
     <td>150</td>
   </tr>
   <tr>
+    <td>5</td>
     <td>5</td>
     <td>300</td>
     <td>10</td>

@@ -76,6 +76,14 @@
     options: Do not have 'column_groups'
 
     return: [[0],[1],[2]]
+
+    ------
+
+    column_size: 7
+    options['column_groups']: [[1,2],[4,6]]
+    options['ignore_columns']: [2,3]
+
+    return: [[0],[1],[4,6],[5]]
      */
     let result;
     if(options.hasOwnProperty('column_groups')){
@@ -96,13 +104,41 @@
                 result.push([i]);
             }
         }
-        return result
-
     } else {
         result = new Array(column_size);
         for (let i = 0; i < column_size; i++){
             result[i] = [i];
         }
+    }
+
+    if(options.hasOwnProperty('ignore_columns')){
+        let ignore_columns = options['ignore_columns'];
+        for(let i=0; i<result.length; i++){
+            let idx_to_remove = [];
+            for(let j=0; j<ignore_columns.length; j++){
+                let idx = result[i].indexOf(ignore_columns[j]);
+                if(idx > -1){
+                    idx_to_remove.push(idx);
+                }
+            }
+            idx_to_remove.sort(function(a,b){return b-a});
+            for(let k=0; k<idx_to_remove.length; k++){
+                result[i].splice(idx_to_remove[k], 1);
+            }
+        }
+        
+        let idx_to_remove = [];
+        for(let i=0; i<result.length; i++){
+            if(result[i].length===0){
+                idx_to_remove.push(i);
+            }
+        }
+        idx_to_remove.sort(function(a,b){return b-a});
+        for(let i=0; i<idx_to_remove.length; i++){
+            result.splice(idx_to_remove[i], 1);
+        }
+        return result;
+    } else {
         return result
     }
   };
